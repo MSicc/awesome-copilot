@@ -2,15 +2,18 @@ name: Validate README.md
 
 on:
   pull_request:
+    branches: [staged]
     types: [opened, synchronize, reopened]
     paths:
       - "instructions/**"
       - "prompts/**"
       - "agents/**"
-      - "collections/**"
+      - "plugins/**"
+      - "workflows/**"
       - "*.js"
       - "README.md"
       - "docs/**"
+      - "skills/**"
 
 jobs:
   validate-readme:
@@ -32,8 +35,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Validate collections
-        run: npm run collection:validate
+      - name: Validate plugins
+        run: npm run plugin:validate
 
       - name: Update README.md
         run: npm start
